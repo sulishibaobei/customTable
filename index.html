@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自定义表格</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap-reset.css" />
+    <style>
+        .table-box {
+            font-size: 12px;
+            line-height: 1.42857143;
+            border-left: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+        }
+        
+        .table-box .header {
+            z-index: 0;
+            background: none;
+        }
+        
+        .table-box thead tr th,
+        .table-box thead tr td {
+            position: relative;
+            font-weight: bold;
+            padding: 5px 2px;
+            border-right: 1px solid #ddd;
+            border-bottom: 2px solid #ddd;
+            text-align: center;
+            white-space: nowrap;
+        }
+        
+        .table-box tr td {
+            padding: 5px 2px;
+            text-align: center;
+            /*white-space: nowrap;*/
+            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .mb10 {
+            margin-bottom: 10px;
+        }
+        
+        .w25 {
+            width: 25%;
+        }
+        
+        .fl {
+            float: left;
+        }
+        
+        .pr20 {
+            padding-left: 20px;
+        }
+        
+        .line-28 {
+            line-height: 28px;
+        }
+        
+        .mt10 {
+            margin-top: 10px;
+        }
+        
+        .modal-dialog {
+            z-index: 100;
+        }
+        
+        .tc {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <button type="button" class="mb10 mt10  customTable ">自定义列表</button>
+    <div id="hasDataList">
+        <table class="table-box" cellpadding="0" cellpadding="0" width="0" border="0">
+            <thead>
+                <tr id="diyTblTrJs1">
+                    <td>序号</td>
+                    <td>编号</td>
+                    <td class="xm">姓名</td>
+                    <td class="sjhm">手机号码</td>
+                    <td class="zz">住址</td>
+                    <td class="hj">户籍</td>
+                    <td class="dszk">单身状况</td>
+                    <td class="gzny">工作年限</td>
+                    <td class="byyx">毕业院校</td>
+                    <td class="xqah">兴趣爱好</td>
+                    <td class="xgtz">性格特征</td>
+                    <td class="srqk">收入情况</td>
+                    <td class="sfzhm">身份证号码</td>
+                    <td class="hk">户口</td>
+                    <td class="sfyf">是否有房</td>
+                    <td class="jtrk">家庭人口</td>
+                    <td class="bz">备注</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>0643253</td>
+                    <td class="xm">张三</td>
+                    <td class="sjhm">18807642343</td>
+                    <td class="zz">广东深圳</td>
+                    <td class="hj">湖南</td>
+                    <td class="dszk">单身</td>
+                    <td class="gzny">3</td>
+                    <td class="byyx">湖南xxx大学</td>
+                    <td class="xqah">上网</td>
+                    <td class="xgtz">文静</td>
+                    <td class="srqk">无</td>
+                    <td class="sfzhm">43024356546546436</td>
+                    <td class="hk">非农</td>
+                    <td class="sfyf">4</td>
+                    <td class="jtrk">无</td>
+                    <td class="bz">但毫无发货䦹我很复古味胡股后官湖庐</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>0643253</td>
+                    <td class="xm">李四</td>
+                    <td class="sjhm">18807642343</td>
+                    <td class="zz">广东深圳</td>
+                    <td class="hj">湖南</td>
+                    <td class="dszk">单身</td>
+                    <td class="gzny">3</td>
+                    <td class="byyx">湖南xxx大学</td>
+                    <td class="xqah">上网</td>
+                    <td class="xgtz">文静</td>
+                    <td class="srqk">无</td>
+                    <td class="sfzhm">43024356546546436</td>
+                    <td class="hk">非农</td>
+                    <td class="sfyf">4</td>
+                    <td class="jtrk">无</td>
+                    <td class="bz">但毫无发货䦹我很复古味胡股后官湖庐</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal fade" id="myModalTableList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:675px">
+                <div class="modal-header no-border">
+                    <h5>自定义列表
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </h5>
+                </div>
+                <div class="modal-body line-28">
+                    <p class="fw700">选择需要显示的信息<label class="ml20"><input type="checkbox" name="checkAll" value="" />全选</label></p>
+                    <div class="clearfix" id="cjDivListCheckBox">
+                        <label class="fl w25 pr20"><input type="checkbox" name="table-list" value="xm" data-lname="姓名" />姓名</label>
+                        <label class="fl w25 pr20"><input type="checkbox" name="table-list" value="sjhm" data-lname="手机号码"  />手机号码</label>
+                        <label class="fl w25 pr20"><input type="checkbox" name="table-list" value="zz" data-lname="住址"  />住址</label>
+                        <label class="fl w25 pr20"><input type="checkbox" name="table-list" value="hj" data-lname="户籍"  />户籍</label>
+                        <label class="fl w25 pr20"><input type="checkbox" name="table-list" value="dszk" data-lname="单身状况" />单身状况</label>
+                        <label class="fl w25 pr20"><input type="checkbox" name="table-list" value="gzny" data-lname="工作年限" />工作年限</label>
+                        <label class="fl w25 pr20"> <input type="checkbox" name="table-list" value="xqah" data-lname="兴趣爱好"  />兴趣爱好</label>
+                        <label class="fl w25 pr20"><input type="checkbox" name="table-list" value="xgtz" data-lname="性格特征"  />性格特征</label>
+                        <label class="fl w25 pr20"><input type="checkbox" name="table-list" value="srqk" data-lname="收入情况"  />收入情况</label>
+                        <label class="fl w25 pr20"> <input type="checkbox" name="table-list" value="sfzhm" data-lname="身份证号码"  />身份证号码</label>
+                        <label class="fl w25 pr20"> <input type="checkbox" name="table-list" value="hk" data-lname="户口"  />户口</label>
+                        <label class="fl w25 pr20"> <input type="checkbox" name="table-list" value="jtrk" data-lname="家庭人口"  />家庭人口</label>
+                        <label class="fl w25 pr20"> <input type="checkbox" name="table-list" value="sfyf" data-lname="是否有房"  />是否有房</label>
+                        <label class="fl w25 pr20"> <input type="checkbox" name="table-list" value="bz" data-lname="备注"  />备注</label>
+                    </div>
+                    <div class="clearfix mt20 tc footbtn">
+                        <button type="button" class="btn btn-primary mr5" id="btnYs" onclick="divListQr(1, 'hasDataList', 'myModalTableList');">确认</button>
+                        <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="jquery.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script>
+        $(function() {
+            $("body").on('click', '.customTable', function() {
+                    $("#myModalTableList").modal('show');
+                    var td = $("#diyTblTrJs1").find('td:visible');
+                    for (var i = 0; i < td.length; i++) {
+                        if (td.eq(i).attr('class')) {
+                            $("#cjDivListCheckBox").find('input[name=table-list][value=' + td.eq(i).attr('class') + ']').prop('checked', true);
+                        }
+                    }
+
+                    var checkLen = $("#cjDivListCheckBox").find("label").length;
+                    var checked = $("#cjDivListCheckBox").find("input[name='table-list']:checked").length;
+                    if (checkLen == checked) {
+                        $("input[name='checkAll']").prop("checked", true);
+                    }
+                })
+                //全选
+            $("body").on('click', 'input[name=checkAll]', function() {
+                if ($(this).is(":checked")) {
+                    $("input[name=table-list]").prop('checked', true);
+                } else {
+                    $("input[name=table-list]").removeProp('checked');
+                }
+            })
+        })
+
+        function query(fieldKey) {
+            $("#cjDivListCheckBox input[name='table-list']").each(function() {
+                if (fieldKey.indexOf($(this).val()) != -1) {
+                    $(this).prop("checked", true);
+                }
+            });
+            showTableTd(fieldKey.split(","), "hasDataList", "myModalTableList");
+        }
+
+        function divListQr(listType, dataListStr, modalStr) {
+            var tdArr = [];
+            var tdNameArr = [];
+            $("input[name='table-list']:checked").each(function() {
+                var tdKey = $(this).val();
+                tdArr.push(tdKey);
+                tdNameArr.push($(this).data("lname"));
+            });
+            showTableTd(tdArr, dataListStr, modalStr);
+            if (tdArr.length == 0) {
+                $("input[name='table-list']:checked").each(function() {
+                    var tdKey = $(this).val();
+                    tdArr.push(tdKey);
+                    tdNameArr.push($(this).data("lname"));
+                });
+            }
+            query(tdArr.join(','));
+            $("#diyTblTrJs1").html($("#diyTblTrJs1").html());
+        }
+
+        function showTableTd(tdArr, dataListStr, modalStr) {
+            $("input[name='table-list']").each(function() {
+                var tdKey = $(this).val();
+                if ($.inArray(tdKey, tdArr) == -1) {
+                    $("#" + dataListStr + " ." + tdKey).hide();
+                } else {
+                    $("#" + dataListStr + " ." + tdKey).show();
+                }
+            });
+            if (tdArr.length < 1) {
+                $("#cjDivListCheckBox").find("input[name='table-list']").prop("checked", true);;
+            }
+            $("#" + modalStr).modal("hide");
+        }
+    </script>
+</body>
+
+
+</html>
