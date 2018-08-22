@@ -181,18 +181,18 @@
     <script src="bootstrap.min.js"></script>
     <script>
         $(function() {
+            //点击自定义列表
             $("body").on('click', '.customTable', function() {
                     $("#myModalTableList").modal('show');
                     var td = $("#diyTblTrJs1").find('td:visible');
-                    for (var i = 0; i < td.length; i++) {
+                    for (var i = 0; i < td.length; i++) { //让表头中显示的内容回显在弹框内选中
                         if (td.eq(i).attr('class')) {
                             $("#cjDivListCheckBox").find('input[name=table-list][value=' + td.eq(i).attr('class') + ']').prop('checked', true);
                         }
                     }
-
                     var checkLen = $("#cjDivListCheckBox").find("label").length;
                     var checked = $("#cjDivListCheckBox").find("input[name='table-list']:checked").length;
-                    if (checkLen == checked) {
+                    if (checkLen == checked) { //是否需要全选
                         $("input[name='checkAll']").prop("checked", true);
                     }
                 })
@@ -206,14 +206,6 @@
             })
         })
 
-        function query(fieldKey) {
-            $("#cjDivListCheckBox input[name='table-list']").each(function() {
-                if (fieldKey.indexOf($(this).val()) != -1) {
-                    $(this).prop("checked", true);
-                }
-            });
-            showTableTd(fieldKey.split(","), "hasDataList", "myModalTableList");
-        }
 
         function divListQr(listType, dataListStr, modalStr) {
             var tdArr = [];
@@ -231,7 +223,6 @@
                     tdNameArr.push($(this).data("lname"));
                 });
             }
-            query(tdArr.join(','));
             $("#diyTblTrJs1").html($("#diyTblTrJs1").html());
         }
 
