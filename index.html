@@ -74,7 +74,7 @@
     </style>
 </head>
 
-<body>
+<body style="padding-left:5%">
     <button type="button" class="mb10 mt10  customTable ">自定义列表</button>
     <div id="hasDataList">
         <table class="table-box" cellpadding="0" cellpadding="0" width="0" border="0">
@@ -160,6 +160,7 @@
                         <label class="fl w25 pr20"><input type="checkbox" name="table-list" value="dszk" data-lname="单身状况" />单身状况</label>
                         <label class="fl w25 pr20"><input type="checkbox" name="table-list" value="gzny" data-lname="工作年限" />工作年限</label>
                         <label class="fl w25 pr20"> <input type="checkbox" name="table-list" value="xqah" data-lname="兴趣爱好"  />兴趣爱好</label>
+                        <label class="fl w25 pr20"> <input type="checkbox" name="table-list" value="byyx" data-lname="毕业院校"  />毕业院校</label>
                         <label class="fl w25 pr20"><input type="checkbox" name="table-list" value="xgtz" data-lname="性格特征"  />性格特征</label>
                         <label class="fl w25 pr20"><input type="checkbox" name="table-list" value="srqk" data-lname="收入情况"  />收入情况</label>
                         <label class="fl w25 pr20"> <input type="checkbox" name="table-list" value="sfzhm" data-lname="身份证号码"  />身份证号码</label>
@@ -243,9 +244,7 @@
                     $("#" + dataListStr + " ." + tdKey).show();
                 }
             });
-            if (tdArr.length < 1) {
-                $("#cjDivListCheckBox").find("input[name='table-list']").prop("checked", true);;
-            }
+
             $("#" + modalStr).modal("hide");
         }
     </script>
